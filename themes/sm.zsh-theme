@@ -21,7 +21,7 @@ theme_precmd () {
 MYBG=${MYBG:-021}
 setopt prompt_subst
 PROMPT='
-%{$BG[$MYBG] %m: %B%F{magenta}%~%B%F{green}${vcs_info_msg_0_}%B%F{zshsasdfasdasdfs} $reset_color%}
+%{$BG[$MYBG] %m: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_}%B%F{zshsasdfasdasdfs} $reset_color%}
 %# '
 
 autoload -U add-zsh-hook
