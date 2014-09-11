@@ -22,14 +22,16 @@ MYBG=${MYBG:-012}
 setopt prompt_subst
 if [ ! -z $SSH_TTY ]
 then
-	PROMPT='
-%{%(?..[${BG[red]}STATUS: $?]
-)$BG[$MYBG] %F{red}%m%F{white}: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_} $reset_color%}
+	PROMPT='%{%(?..
+${(%)BG[001]}[$?]$reset_color
+)
+$BG[$MYBG] %F{red}%m%F{white}: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_} $reset_color%}
 %# '
 else
-	PROMPT='
-%{%(?..[${BG[red]}STATUS: $?]
-)$BG[$MYBG] %m: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_} $reset_color%}
+	PROMPT='%{%(?..
+${(%)BG[001]}[$?]$reset_color
+)
+$BG[$MYBG] %m: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_} $reset_color%}
 %# '
 fi
 
