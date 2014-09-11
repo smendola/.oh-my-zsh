@@ -20,9 +20,18 @@ theme_precmd () {
 
 MYBG=${MYBG:-012}
 setopt prompt_subst
-PROMPT='
-%{$BG[$MYBG] %m: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_} $reset_color%}
+if [ ! -z $SSH_TTY ]
+then
+	PROMPT='
+%{%(?..[${BG[red]}STATUS: $?]
+)$BG[$MYBG] %F{red}%m%F{white}: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_} $reset_color%}
 %# '
+else
+	PROMPT='
+%{%(?..[${BG[red]}STATUS: $?]
+)$BG[$MYBG] %m: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_} $reset_color%}
+%# '
+fi
 
 autoload -U add-zsh-hook
 add-zsh-hook precmd  theme_precmd
