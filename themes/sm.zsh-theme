@@ -20,6 +20,10 @@ theme_precmd () {
 
 MYBG=${MYBG:-012}
 setopt prompt_subst
+if [[ $(id -u) = 0 ]]
+then
+	MYBG=001
+fi
 if [ ! -z $SSH_TTY ]
 then
 	PROMPT='%{%(?..
