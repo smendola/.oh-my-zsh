@@ -36,7 +36,7 @@ test "$MYBG" = 001 -a "$SSH_CONNECTION" && _m_color=black
 PROMPT='%{%(?..
 ${(%)BG[001]}[$?]$reset_color
 )
-$BG[$MYBG] %F{$_m_color}%m%F{green}: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_} $reset_color%}
+$BG[$MYBG] %F{$_m_color}%m%F{white}: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_} $reset_color%}
 %# '
 
 autoload -U add-zsh-hook
