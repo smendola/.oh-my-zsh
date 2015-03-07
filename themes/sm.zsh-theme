@@ -26,10 +26,6 @@ then
 	MYBG=001
 fi
 
-if [ ! -z $SSH_TTY ]
-then
-fi
-
 test -z "$SSH_CONNECTION" && _m_color=white || _m_color=red
 test "$MYBG" = 001 -a "$SSH_CONNECTION" && _m_color=black
 
