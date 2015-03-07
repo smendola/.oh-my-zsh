@@ -20,24 +20,24 @@ theme_precmd () {
 
 MYBG=${MYBG:-012}
 setopt prompt_subst
+# force red prompt BG for root
 if [[ $(id -u) = 0 ]]
 then
 	MYBG=001
 fi
+
 if [ ! -z $SSH_TTY ]
 then
-	PROMPT='%{%(?..
-${(%)BG[001]}[$?]$reset_color
-)
-$BG[$MYBG] %F{red}%m%F{white}: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_} $reset_color%}
-%# '
-else
-	PROMPT='%{%(?..
-${(%)BG[001]}[$?]$reset_color
-)
-$BG[$MYBG] %m: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_} $reset_color%}
-%# '
 fi
+
+test -z "$SSH_CONNECTION" && _m_color=white || _m_color=red
+test "$MYBG" = 001 -a "$SSH_CONNECTION" && _m_color=black
+
+PROMPT='%{%(?..
+${(%)BG[001]}[$?]$reset_color
+)
+$BG[$MYBG] %F{$_m_color}%m%F{green}: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_} $reset_color%}
+%# '
 
 autoload -U add-zsh-hook
 add-zsh-hook precmd  theme_precmd
