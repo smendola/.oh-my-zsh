@@ -35,5 +35,16 @@ ${(%)BG[001]}[$?]$reset_color
 $BG[$MYBG] %F{$_m_color}%m%F{white}: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_} $reset_color%}
 %# '
 
+# Prints running command in title bar
+# Differs from OMZ default in that it prepends %~
+omz_termsupport_preexec () {
+    emulate -L zsh
+    setopt extended_glob
+    local CMD=${1[(wr)^(*=*|sudo|ssh|rake|-*)]}
+    local LINE="${2:gs/$/\\$}"
+    LINE="[%~]: ${LINE:gs/%/%%}"
+    title "$CMD" "%100>...>$LINE%<<"
+}
+
 autoload -U add-zsh-hook
 add-zsh-hook precmd  theme_precmd
