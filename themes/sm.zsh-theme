@@ -54,9 +54,11 @@ add-zsh-hook precmd  theme_precmd
 #   in Windows taskbar.cls
 _tty=$(tty)
 _tty=${_tty##*/}
+
 # This is supposed to be the minified window title
-# but it has no effect on MS Windows.
-ZSH_THEME_TERM_TAB_TITLE_IDLE='AMAZING! It worked!'
+# On Win10/bash it becomes the window title and taskbar button
+ZSH_THEME_TERM_TAB_TITLE_IDLE='${_tty}: %~'
+
 # This is the window title. On Windows, it is also the label used in the
 # task bar button. BTW, %l comes close to ${_tty} but not quite
 ZSH_THEME_TERM_TITLE_IDLE='${_tty}: %~'
