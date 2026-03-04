@@ -16,6 +16,13 @@ theme_precmd () {
     }
 
     vcs_info
+    
+    # Set virtualenv indicator
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        VENV_PROMPT=" %F{cyan}($(basename $VIRTUAL_ENV))%f"
+    else
+        VENV_PROMPT=""
+    fi
 }
 
 MYBG=${MYBG:-012}
@@ -34,13 +41,13 @@ then
 PROMPT='%{%(?..
 ${(%)BG[001]}[$?]$reset_color
 )
-%K{blue} %F{$_m_color}%m%F{white}: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_} $reset_color%}
+%K{blue} %F{$_m_color}%m%F{white}: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_}${VENV_PROMPT} $reset_color%}
 %# '
 else
 PROMPT='%{%(?..
 ${(%)BG[001]}[$?]$reset_color
 )
-$BG[$MYBG] %F{$_m_color}%m%F{white}: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_} $reset_color%}
+$BG[$MYBG] %F{$_m_color}%m%F{white}: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_}${VENV_PROMPT} $reset_color%}
 %# '
 fi
 
