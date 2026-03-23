@@ -33,9 +33,11 @@ if [[ $(id -u) = 0 ]]; then
 	MYBG=160
 fi
 
-if [[ -z "$SSH_CONNECTION" && $(id -u) != 0 ]]; then
+if [[ "$SSH_CONNECTION" && $(id -u) = 0 ]]; then
    _m_color=black
 elif [[ "$SSH_CONNECTION" ]]; then
+  _m_color=red
+else
   _m_color=white
 fi
 
