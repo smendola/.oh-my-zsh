@@ -6,3 +6,5 @@ custom/
 # temp files directories
 cache/
 log/
+config.bat
+node_modules
