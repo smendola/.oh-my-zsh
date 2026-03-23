@@ -30,11 +30,11 @@ setopt prompt_subst
 # force red prompt BG for root
 if [[ $(id -u) = 0 ]]
 then
-	MYBG=001
+	MYBG=160
 fi
 
-test -z "$SSH_CONNECTION" && _m_color=white || _m_color=red
-#test "$MYBG" = 001 -a "$SSH_CONNECTION" && _m_color=black
+test -z "$SSH_CONNECTION" && _m_color=white || _m_color=black
+test "$MYBG" = 001 -a "$SSH_CONNECTION" && _m_color=white
 
 PROMPT='%{%(?..
 ${(%)BG[001]}[$?]$reset_color
