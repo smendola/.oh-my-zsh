@@ -34,22 +34,13 @@ then
 fi
 
 test -z "$SSH_CONNECTION" && _m_color=white || _m_color=red
-test "$MYBG" = 001 -a "$SSH_CONNECTION" && _m_color=black
+#test "$MYBG" = 001 -a "$SSH_CONNECTION" && _m_color=black
 
-if [[ $TERM = linux ]]
-then
-PROMPT='%{%(?..
-${(%)BG[001]}[$?]$reset_color
-)
-%K{blue} %F{$_m_color}%m%F{white}: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_}${VENV_PROMPT} $reset_color%}
-%# '
-else
 PROMPT='%{%(?..
 ${(%)BG[001]}[$?]$reset_color
 )
 $BG[$MYBG] %F{$_m_color}%m%F{white}: %B%F{yellow}%~%B%F{green}${vcs_info_msg_0_}${VENV_PROMPT} $reset_color%}
 %# '
-fi
 
 # Prints running command in title bar
 # Differs from OMZ default in that it prepends %~
