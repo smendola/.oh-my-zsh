@@ -27,14 +27,17 @@ theme_precmd () {
 
 MYBG=${MYBG:-012}
 setopt prompt_subst
+
 # force red prompt BG for root
-if [[ $(id -u) = 0 ]]
-then
+if [[ $(id -u) = 0 ]]; then
 	MYBG=160
 fi
 
-test -z "$SSH_CONNECTION" && _m_color=white || _m_color=black
-test "$MYBG" = 001 -a "$SSH_CONNECTION" && _m_color=white
+if [[ -z "$SSH_CONNECTION" && $(id -u) != 0 ]]; then
+   _m_color=black
+elif [[ "$SSH_CONNECTION" ]]; then
+  _m_color=white
+fi
 
 PROMPT='%{%(?..
 ${(%)BG[001]}[$?]$reset_color
