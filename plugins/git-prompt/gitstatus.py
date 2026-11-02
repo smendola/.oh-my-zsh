@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 from __future__ import print_function
 
-import lib.session
 import sys
 import re
 import shlex
